@@ -1,0 +1,545 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ayenew Girmay's professional portfolio.">
+    <title>Ayenew Girmay | Professional Portfolio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style id="ayenew-home-animation">
+.hero-title {
+    animation: ayenewSlideIn 1.3s ease-out both;
+}
+
+@keyframes ayenewSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-65px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-title {
+        animation: none;
+    }
+}
+</style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Main navigation">
+            <a class="logo" href="#home">Ayenew Girmay<span>.</span></a>
+
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                    <a href="#experience">Experience</a>
+<a href="#projects">Projects</a>
+                <a href="#certificates">Certificates</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Home -->
+        <section class="hero container" id="home">
+            <div class="hero-copy">
+                <p class="eyebrow">WELCOME TO MY PORTFOLIO</p>
+
+                <h1 class="hero-title">Hello, I'm <span>Ayenew Girmay.</span></h1>
+                <h2>Professional Senior Electrician | Web Developer | Problem Solver | Lifelong Learner</h2>
+
+                <p class="intro">
+                    I enjoy solving real-world problems, learning new
+                    technologies, and building solutions that make a difference.
+                    Explore my background, skills, and projects below.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="button" href="#projects">View My Work</a>
+                    <a class="button button-outline" href="#contact">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile photo of Ayenew Girmay" class="profile-photo">
+                <h3>Ayenew Girmay</h3>
+                <p>Professional Portfolio</p>
+                <span class="status">Open to opportunities</span>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section section-soft" id="about">
+            <div class="container narrow">
+                <p class="eyebrow">GET TO KNOW ME</p>
+                <h2 class="section-title">About Me</h2>
+
+                <p>
+                    I am a motivated professional who values continuous
+                    improvement, teamwork, and practical problem-solving.
+                    I enjoy learning new skills and applying them to real
+                    professional challenges.
+            I work as a Senior Electrician with hands-on experience in industrial electrical
+            systems, maintenance, and troubleshooting within pharmaceutical manufacturing 
+            environments. My focus is on keeping equipment running reliably, maintaining safety
+            standards, and reducing downtime to support smooth production operations.
+            Over the years, Iâ€™ve also worked across residential, commercial, and industrial 
+            electrical installations, which has given me a broad practical understanding of different electrical systems and working environments.
+            I hold a B.Sc. in Electrical and Computer Engineering, and Iâ€™m also strongly interested in technology and software development, especially how it connects with industrial systems and automation.      
+                </p>
+
+                <p>
+                    Update this section with your actual work experience,
+                    education, career goals, and professional achievements.
+                </p>
+
+                <a class="text-link" href="#contact">Let's connect</a>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section container" id="skills">
+            <p class="eyebrow">WHAT I BRING</p>
+            <h2 class="section-title">Skills &amp; Expertise</h2>
+
+            <div class="skill-grid">
+                <article class="info-card">
+                    <h3>Technical Skills</h3>
+                    <p>
+                        <div class="skills-grid">
+
+  <div class="skill-card">
+    <h3><i class="fa-solid fa-code"></i> Programming & Development</h3>
+    <div class="skill-list">
+      <span><i class="fa-brands fa-python"></i> Python</span>
+      <span><i class="fa-solid fa-globe"></i> Flask</span>
+      <span><i class="fa-brands fa-html5"></i> HTML5</span>
+      <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+      <span><i class="fa-brands fa-js"></i> JavaScript</span>
+      <span><i class="fa-brands fa-git-alt"></i> Git</span>
+      <span><i class="fa-brands fa-github"></i> GitHub</span>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <h3><i class="fa-solid fa-bolt"></i> Electrical Maintenance</h3>
+    <div class="skill-list">
+      <span><i class="fa-solid fa-gauge-high"></i> Electrical Testing</span>
+      <span><i class="fa-solid fa-screwdriver-wrench"></i> Preventive Maintenance</span>
+      <span><i class="fa-solid fa-magnifying-glass-chart"></i> Fault Diagnosis</span>
+      <span><i class="fa-solid fa-diagram-project"></i> Electrical Schematics</span>
+      <span><i class="fa-solid fa-shield-halved"></i> Electrical Safety</span>
+      <span><i class="fa-solid fa-gears"></i> Industrial Equipment</span>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <h3><i class="fa-solid fa-laptop-code"></i> Tools & Technologies</h3>
+    <div class="skill-list">
+      <span><i class="fa-solid fa-terminal"></i> PowerShell</span>
+      <span><i class="fa-brands fa-microsoft"></i> VS Code</span>
+      <span><i class="fa-solid fa-database"></i> Data Handling</span>
+      <span><i class="fa-solid fa-screwdriver"></i> Troubleshooting</span>
+      <span><i class="fa-solid fa-file-lines"></i> Technical Documentation</span>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    margin-top: 24px;
+}
+
+.skill-card {
+    padding: 24px;
+    border: 1px solid rgba(128,128,128,.25);
+    border-radius: 14px;
+    background: var(--card-bg, rgba(128,128,128,.05));
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0,0,0,.10);
+}
+
+.skill-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 18px;
+}
+
+.skill-card h3 i,
+.skill-list span i {
+    color: #00a6c7;
+    margin-right: 8px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-list span {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: rgba(128,128,128,.09);
+    font-size: .9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-card {
+        transition: none;
+    }
+    .skill-card:hover {
+        transform: none;
+    }
+}
+</style>
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3><i class="fa-solid fa-people-group"></i> Professional Skills</h3>
+<p>Communication, teamwork, technical troubleshooting, problem-solving, and task planning. Skilled in analyzing technical issues, collaborating with team members, following safety procedures, and organizing tasks efficiently. Able to apply analytical thinking to electrical engineering challenges and software development projects.</p>
+                </article>
+
+                <article class="info-card">
+    <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+    <h4>Electrical and Computer Engineering</h4>
+    <p><i class="fa-solid fa-building-columns"></i> Dilla University</p>
+    <p><i class="fa-solid fa-calendar-days"></i> Enrolled in 2019</p>
+    <p>Engineering education covering electrical systems, electronics, computer technology, and technical problem-solving.</p>
+</article>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        
+<!-- Professional Experience -->
+<section id="experience" class="section section-soft">
+    <div class="container">
+        <p class="eyebrow">CAREER JOURNEY</p>
+        <h2 class="section-title">Professional Experience</h2>
+
+        <p class="section-description">
+            My professional journey, technical responsibilities, and achievements.
+        </p>
+
+        <article class="experience-card">
+            <h3>Senior Electrical Technician</h3>
+            <p class="experience-company">Julphar pharmaceutical PLC Â· Addis Ababa</p>
+            <p class="experience-period">June 2025 â€“ Present</p>
+
+            <ul>
+                <li>Perform preventive and corrective maintenance on electrical equipment.</li>
+                <li>Diagnose electrical faults and troubleshoot industrial control systems.</li>
+                <li>Inspect electrical panels, motors, sensors, and control circuits.</li>
+                <li>Follow electrical safety procedures and document maintenance activities.</li>
+            </ul>
+        </article>
+
+        <article class="experience-card">
+            <h3>Electrical Technician</h3>
+            <p class="experience-company">Grand Palace of Ethiopia Unity Park/Friendship Square Â· Addis Ababa, Ethipia</p>
+            <p class="experience-period">Dec 2022 â€“ July 2025</p>
+
+            <ul>
+                <li>Performed installation, inspection, and maintenance of electrical systems, ensuring compliance with safety standards and regulations.</li>
+                <li>Diagnosed and resolved electrical faults quickly, minimizing downtime and operational disruptions.</li>
+                <li>Collaborated with multidisciplinary teams including engineers, facility managers, and security personnel.</li>
+                <li>Electrical Installation & Maintenance â€¢ Troubleshooting & Diagnostics â€¢ Preventive Maintenance â€¢</li>
+            </ul>
+        </article>
+         <article class="experience-card">
+            <h3>General Technician</h3>
+            <p class="experience-company">RocSpaces Â· Addis Ababa, Ethipia</p>
+            <p class="experience-period">Feb 2022 â€“ Dec 2022</p>
+            <ul>
+                <li> Electrical maintenance and troubleshooting</li>
+                <li> Preventive and corrective maintenance</li>
+                <li> Plumbing and basic HVAC support</li>
+                <li> Equipment and facility inspection</li>
+            </ul>
+        </article>
+        <article class="experience-card">
+            <h3>Assistance Electrician and Boiler Operator</h3>
+            <p class="experience-company">ANA Soap Factory Â· Burayu, Oromia Region, Ethiopia</p>
+            <p class="experience-period">May 2021 â€“ Feb 2022</p>
+            <ul>
+                <li> Motor and control panel support</li>
+                <li> Boiler operation and monitoring</li>
+                <li> Safety compliance and hazard awareness</li>
+                <li> Equipment and facility inspection</li>
+            </ul>
+        </article>
+        <article class="experience-card">
+            <h3>Assistance Electrician and Boiler Operator</h3>
+            <p class="experience-company">MA General Trading Â· Burayu, Oromia Region, Ethiopia</p>
+            <p class="experience-period">jan 2020 â€“ May 2021</p>
+            <ul>
+                <li>Motor and control panel support</li>
+                <li>Boiler operation and monitoring</li>
+                <li>Safety compliance and hazard awareness</li>
+                <li>Equipment and facility inspection</li>
+            </ul>
+        </article>
+    </div>
+</section>
+<section class="section section-soft" id="projects">
+            <div class="container">
+                <p class="eyebrow">SELECTED WORK</p>
+                <h2 class="section-title">My Projects</h2>
+
+                <div class="project-grid">
+                    <article class="info-card project-card">
+                        <span class="project-number">PROJECT 01</span>
+                        <h3>Electricity Theft Detection</h3>
+
+                        <p>
+Electricity theft poses a significant challenge for power distribution, leading to revenue losses and operational 
+inefficiencies. This project employs a Deep Neural Network (DNN) to identify instances of electricity theft by examining 
+various energy usage metrics, including mean, median, maximum, minimum, count, sum, and standard deviation. Following 
+preprocessing, key features are extracted and input into the DNN model for both training and testing. The model effectively 
+classifies energy consumption patterns as either normal usage or theft, facilitating the efficient detection of fraudulent 
+activities. 
+By analyzing labeled historical data, the system can make precise predictions and spot irregularities in energy 
+consumption. Utilizing advanced machine learning techniques ensures a high level of accuracy and reliability in identifying 
+theft patterns. This project demonstrates an efficient and automated approach to monitoring electricity usage and minimizing 
+theft, thus aiding the development of smart grid systems and fostering fair distribution of energy resources. 
+                        </p>
+
+                        <span class="tag">Python / Machine Learning</span>
+                    </article>
+
+                    <article class="info-card project-card">
+                        <span class="project-number">PROJECT 02</span>
+                        <h3>Python Web Application</h3>
+
+                        <p>
+I developed a Python-based web application designed to provide an interactive, user-friendly interface for data processing, analysis, and visualization. 
+The application integrates Python programming with web technologies to deliver functionality through a clean and accessible interface.
+
+The main features include data input and processing, interactive data visualization, analytical results, and a structured user interface that makes complex information easier to understand. 
+I used Python for the core application logic and relevant libraries and web technologies to implement the application's functionality and presentation.
+
+Through this project, I strengthened my skills in Python programming, web application development, data handling, debugging, and software deployment. 
+I also learned how to organize application components, troubleshoot technical issues, improve usability, and transform a project idea into a functional web application. 
+This experience enhanced my problem-solving abilities and prepared me to develop more scalable and maintainable software solutions.
+                        </p>
+
+                        <span class="tag">Python / Flask</span>
+                    </article>
+
+                    <article class="info-card project-card">
+                        <span class="project-number">PROJECT 03</span>
+                        <h3>MediServe Hospital Management & Appointment System</h3>
+
+                        <p>
+MediServe is a full-stack Hospital Management and Appointment System built with the MERN stack. 
+This platform allows hospital staff, doctors, and patients to efficiently manage appointments, doctor availability, and patient records in a secure and organized manner.
+The system is live and accessible via vercel at:<a href="https://mediserve-frontend-final-project.vercel.app" style="color: blue;">MediServe Web Application</a>
+                        <span class="tag">Javascript / MERN</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates: separate from Contact -->
+        <section class="section container" id="certificates">
+    <p class="eyebrow">PROFESSIONAL DEVELOPMENT</p>
+    <h2 class="section-title">My Certificates</h2>
+    <p>My certificates, professional training, and completed courses.</p>
+
+    <div class="certificate-grid">
+        {% for certificate in certificates %}
+        <article class="info-card certificate-card">
+            <div class="certificate-icon" aria-hidden="true">
+    <i class="fa-solid fa-award"></i>
+</div>
+
+            <h3>{{ certificate.rsplit('.', 1)[0] | replace('_', ' ') | replace('-', ' ') | title }}</h3>
+            <p>Professional certificate or training document.</p>
+
+            <a class="button button-outline"
+               href="{{ url_for('static', filename='certificates/' + certificate) }}"
+               target="_blank" rel="noopener noreferrer">
+                View Certificate &rarr;</a>
+        </article>
+        {% else %}
+        <p>No certificates found yet. Add PDF or image files to the static/certificates folder.</p>
+        {% endfor %}
+    </div>
+</section>
+
+        <!-- Contact: independent section -->
+        <section class="section container" id="contact">
+            <div class="contact-layout">
+
+                <div>
+                    <p class="eyebrow">GET IN TOUCH</p>
+                    <h2 class="section-title">Let's Talk</h2>
+
+                    <p>
+                        Have a job opportunity, project, or question?
+                        Send me a message using this form.
+                    </p>
+
+                    <p class="contact-note">
+                        Messages are saved by this website.
+                        Email notifications are not configured yet.
+                    </p>
+                </div>
+
+                <div>
+                    <!-- Flask success/error messages -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="notice {{ category }}"
+                                     role="status">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- Contact form -->
+                    <form class="contact-form"
+                          action="{{ url_for('contact') }}"
+                          method="POST">
+
+                        <input type="hidden"
+                               name="csrf_token"
+                               value="{{ csrf_token() }}">
+
+                        <!-- Spam prevention field -->
+                        <div class="honeypot" aria-hidden="true">
+                            <label for="website">Leave this field empty</label>
+                            <input id="website"
+                                   type="text"
+                                   name="website"
+                                   tabindex="-1"
+                                   autocomplete="off">
+                        </div>
+
+                        <label for="name">Your name</label>
+                        <input id="name"
+                               name="name"
+                               type="text"
+                               maxlength="100"
+                               autocomplete="name"
+                               required>
+
+                        <label for="email">Email address</label>
+                        <input id="email"
+                               name="email"
+                               type="email"
+                               maxlength="254"
+                               autocomplete="email"
+                               required>
+
+                        <label for="message">Your message</label>
+                        <textarea id="message"
+                                  name="message"
+                                  rows="5"
+                                  maxlength="3000"
+                                  required></textarea>
+
+                        <button class="button" type="submit">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a class="footer-logo" href="#home">Ayenew Girmay<span>.</span></a>
+            <p>Electrical Technician | Web Developer | Industrial Systems &amp; Technology</p>
+            <a class="footer-email" href="mailto:your.email@example.com">ayenewgirmay21@gmail.com</a>
+        </div>
+
+        <div class="footer-navigation">
+            <h3>Quick Links</h3>
+            <nav aria-label="Footer navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#certificates">Certificates</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+
+        <div class="footer-connect">
+            <h3>Let's Connect</h3>
+            <p>Have a project or professional opportunity in mind? Get in touch.</p>
+            <a class="footer-contact-button" href="#contact">Contact Me <span aria-hidden="true"></span></a>
+            <a class="footer-back-top" href="#home">Back to top ↑</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; <div class="footer-socials">
+    <a href="https://t.me/murael21" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/ayenew-girmay-491057320" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    <a href="https://github.com/ayenewgirmay21" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="https://wa.me/251923849518" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+</div>
+<span id="footer-year"></span> © 2026 Ayenew Girmay. All rights reserved.</p>
+        <p>Designed with care.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
