@@ -91,6 +91,7 @@ def home():
 
 
 def send_contact_notification(name, visitor_email, visitor_message):
+    print("EMAIL NOTIFICATION FUNCTION REACHED")
     sender = os.environ.get("GMAIL_SENDER", "").strip()
     app_password = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "")
     recipient = os.environ.get("CONTACT_TO_EMAIL", "").strip()
@@ -134,6 +135,7 @@ def send_contact_notification(name, visitor_email, visitor_message):
 
 @app.route("/contact", methods=["POST"])
 def contact():
+    print("CONTACT ROUTE REACHED")
     name = request.form.get("name", "").strip()
     email = request.form.get("email", "").strip()
     message = request.form.get("message", "").strip()
