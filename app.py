@@ -91,45 +91,61 @@ def home():
 
 
 def send_contact_notification(name, visitor_email, visitor_message):
-    print("EMAIL NOTIFICATION FUNCTION REACHED")
-    sender = os.environ.get("GMAIL_SENDER", "").strip()
-    app_password = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "")
-    recipient = os.environ.get("CONTACT_TO_EMAIL", "").strip()
+    import json
+    import urllib.request
+    import urllib.error
 
-    if not sender or not app_password or not recipient:
-        print("Email notification skipped: email environment variables missing.")
+    print("EMAIL NOTIFICATION FUNCTION REACHED")
+
+    api_key = os.environ.get("BREVO_API_KEY", "").strip()
+    recipient = os.environ.get("CONTACT_TO_EMAIL", "").strip()
+    sender = os.environ.get("GMAIL_SENDER", "").strip()
+
+    if not api_key or not recipient or not sender:
+        print("Brevo notification skipped: required environment variables missing.")
         return False
 
-    email_message = EmailMessage()
-    email_message["Subject"] = "New portfolio contact form message"
-    email_message["From"] = sender
-    email_message["To"] = recipient
-    email_message["Reply-To"] = visitor_email
+    payload = {
+        "sender": {
+            "name": "Ayenew - Portfolio",
+            "email": sender
+        },
+        "to": [{"email": recipient}],
+        "replyTo": {"email": visitor_email},
+        "subject": "New portfolio contact form message",
+        "textContent": (
+            f"New message from your portfolio website.\n\n"
+            f"Name: {name}\n"
+            f"Visitor email: {visitor_email}\n\n"
+            f"Message:\n{visitor_message}"
+        )
+    }
 
-    email_message.set_content(
-        f"New message from your portfolio website.\\n\\n"
-        f"Name: {name}\\n"
-        f"Visitor email: {visitor_email}\\n\\n"
-        f"Message:\\n{visitor_message}"
+    request = urllib.request.Request(
+        "https://api.brevo.com/v3/smtp/email",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "api-key": api_key,
+            "accept": "application/json",
+            "content-type": "application/json"
+        },
+        method="POST"
     )
 
     try:
-        with smtplib.SMTP("smtp.gmail.com", 587, timeout=20) as server:
-            server.ehlo()
-            server.starttls()
-            server.ehlo()
-            server.login(sender, app_password)
-            server.send_message(email_message)
+        with urllib.request.urlopen(request, timeout=20) as response:
+            print("Brevo API response status:", response.status)
 
-        print("Portfolio contact email notification sent.")
+        print("Portfolio contact email notification sent via Brevo.")
         return True
 
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", "replace")
+        print("Brevo email API failed:", exc.code, detail[:1000])
+        return False
+
     except Exception as exc:
-        print(
-            "Portfolio email notification failed:",
-            type(exc).__name__,
-            str(exc),
-        )
+        print("Brevo connection failed:", type(exc).__name__, str(exc))
         return False
 
 
