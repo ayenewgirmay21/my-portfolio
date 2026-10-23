@@ -1,4 +1,4 @@
-﻿
+
 import os
 import re
 import sqlite3
@@ -13,6 +13,12 @@ from flask import (
     url_for,
 )
 from flask_wtf.csrf import CSRFProtect
+from flask import session
+import secrets
+from datetime import timedelta
+from functools import wraps
+from werkzeug.security import check_password_hash
+
 
 BASE_DIR = Path(__file__).resolve().parent
 INSTANCE_DIR = BASE_DIR / "instance"
@@ -26,6 +32,16 @@ app.config["SECRET_KEY"] = os.environ.get(
 
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024  # 16 KB
 CSRFProtect(app)
+
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=(
+        os.environ.get("COOKIE_SECURE", "false").lower() == "true"
+    ),
+    PERMANENT_SESSION_LIFETIME=timedelta(minutes=30),
+)
+
 
 DATABASE_PATH = Path(
     os.environ.get(
@@ -92,6 +108,69 @@ def contact():
 
     flash("Thank you! Your message has been sent successfully.", "success")
     return redirect(url_for("home") + "#contact")
+
+
+
+def admin_required(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+        if not session.get("admin_logged_in"):
+            return redirect(url_for("admin_login"))
+        return view(*args, **kwargs)
+    return wrapped_view
+
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    admin_username = os.environ.get("ADMIN_USERNAME")
+    password_hash = os.environ.get("ADMIN_PASSWORD_HASH")
+
+    if not admin_username or not password_hash:
+        return "Admin login is not configured.", 503
+
+    if request.method == "POST":
+        username = request.form.get("username", "")
+        password = request.form.get("password", "")
+
+        username_ok = secrets.compare_digest(username, admin_username)
+        password_ok = check_password_hash(password_hash, password)
+
+        if username_ok and password_ok:
+            session.clear()
+            session["admin_logged_in"] = True
+            session.permanent = True
+            return redirect(url_for("admin_inbox"))
+
+        flash("Invalid username or password.", "error")
+
+    return render_template("admin_login.html")
+
+
+@app.route("/admin", methods=["GET"])
+@admin_required
+def admin_inbox():
+    with sqlite3.connect(DATABASE_PATH) as connection:
+        connection.row_factory = sqlite3.Row
+        messages = connection.execute(
+            """
+            SELECT id, name, email, message, created_at
+            FROM messages
+            ORDER BY id DESC
+            """
+        ).fetchall()
+
+    response = render_template(
+        "admin_messages.html",
+        messages=messages,
+    )
+    return response
+
+
+@app.route("/admin/logout", methods=["POST"])
+@admin_required
+def admin_logout():
+    session.clear()
+    return redirect(url_for("admin_login"))
 
 
 if __name__ == "__main__":

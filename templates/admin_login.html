@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Login | Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 50px 16px;
+        }
+        .login-box {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #0001;
+        }
+        input, button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 16px;
+        }
+        button {
+            background: #075985;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .error { color: #b91c1c; }
+    </style>
+</head>
+<body>
+    <main class="login-box">
+        <h1>Admin Login</h1>
+        <p>Sign in to read portfolio messages.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <p class="error">{{ message }}</p>
+          {% endfor %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="hidden" name="csrf_token"
+                   value="{{ csrf_token() }}">
+
+            <label for="username">Username</label>
+            <input id="username" name="username"
+                   autocomplete="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password"
+                   type="password"
+                   autocomplete="current-password" required>
+
+            <button type="submit">Sign In</button>
+        </form>
+    </main>
+</body>
+</html>
