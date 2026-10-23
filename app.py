@@ -13,6 +13,9 @@ from flask import (
     url_for,
 )
 from flask_wtf.csrf import CSRFProtect
+import smtplib
+from email.message import EmailMessage
+
 from flask import session
 import secrets
 from datetime import timedelta
@@ -86,6 +89,49 @@ def home():
     return render_template("index.html", certificates=certificates)
 
 
+
+def send_contact_notification(name, visitor_email, visitor_message):
+    sender = os.environ.get("GMAIL_SENDER", "").strip()
+    app_password = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "")
+    recipient = os.environ.get("CONTACT_TO_EMAIL", "").strip()
+
+    if not sender or not app_password or not recipient:
+        print("Email notification skipped: email environment variables missing.")
+        return False
+
+    email_message = EmailMessage()
+    email_message["Subject"] = "New portfolio contact form message"
+    email_message["From"] = sender
+    email_message["To"] = recipient
+    email_message["Reply-To"] = visitor_email
+
+    email_message.set_content(
+        f"New message from your portfolio website.\\n\\n"
+        f"Name: {name}\\n"
+        f"Visitor email: {visitor_email}\\n\\n"
+        f"Message:\\n{visitor_message}"
+    )
+
+    try:
+        with smtplib.SMTP("smtp.gmail.com", 587, timeout=20) as server:
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(sender, app_password)
+            server.send_message(email_message)
+
+        print("Portfolio contact email notification sent.")
+        return True
+
+    except Exception as exc:
+        print(
+            "Portfolio email notification failed:",
+            type(exc).__name__,
+            str(exc),
+        )
+        return False
+
+
 @app.route("/contact", methods=["POST"])
 def contact():
     name = request.form.get("name", "").strip()
@@ -105,6 +151,10 @@ def contact():
             "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)",
             (name, email, message),
         )
+
+    # Save the message first, then attempt email notification.
+    # An email failure will not discard the saved contact message.
+    send_contact_notification(name, email, message)
 
     flash("Thank you! Your message has been sent successfully.", "success")
     return redirect(url_for("home") + "#contact")
