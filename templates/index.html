@@ -38,17 +38,27 @@
     <!-- Navigation -->
     <header class="site-header">
         <nav class="nav container" aria-label="Main navigation">
-            <a class="logo" href="#home">Ayenew Girmay<span>.</span></a>
+    <a class="logo" href="#home">Ayenew Girmay<span>.</span></a>
 
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                    <a href="#experience">Experience</a>
-<a href="#projects">Projects</a>
-                <a href="#certificates">Certificates</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
+    <button class="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="main-nav-links"
+            aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="nav-links" id="main-nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
     </header>
 
     <main>
@@ -407,8 +417,8 @@ The system is live and accessible via vercel at:<a href="https://mediserve-front
                     </p>
 
                     <p class="contact-note">
-                        Messages are saved by this website.
-                        Email notifications are not configured yet.
+                        Messages are recorded
+                        Email notifications are presented.
                     </p>
                 </div>
 
@@ -509,27 +519,69 @@ The system is live and accessible via vercel at:<a href="https://mediserve-front
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; <div class="footer-socials">
-    <a href="https://t.me/murael21" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-        <i class="fa-brands fa-telegram"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/ayenew-girmay-491057320" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-        <i class="fa-brands fa-linkedin-in"></i>
-    </a>
-    <a href="https://github.com/ayenewgirmay21" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <i class="fa-brands fa-github"></i>
-    </a>
-    <a href="https://wa.me/251923849518" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-</div>
-<span id="footer-year"></span> © 2026 Ayenew Girmay. All rights reserved.</p>
-        <p>Designed with care.</p>
+    <div class="footer-socials">
+        <a href="https://t.me/murael21" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <i class="fa-brands fa-telegram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ayenew-girmay-491057320" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/ayenewgirmay21" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://wa.me/251923849518" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
     </div>
+    <p><span id="footer-year"></span> © 2026 Ayenew Girmay. All rights reserved.</p>
+    <p>Designed with care.</p>
+</div>
 </footer>
 
+    <!-- Hamburger menu functionality -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuButton = document.querySelector(".menu-toggle");
+        const menuLinks = document.querySelector(".site-header .nav-links");
+
+        if (!menuButton || !menuLinks) return;
+
+        function closeMenu() {
+            menuLinks.classList.remove("is-open");
+            menuButton.classList.remove("is-active");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.setAttribute("aria-label", "Open navigation menu");
+        }
+
+        menuButton.addEventListener("click", function () {
+            const isOpen = menuLinks.classList.toggle("is-open");
+
+            menuButton.classList.toggle("is-active", isOpen);
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+        });
+
+        menuLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") closeMenu();
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 760) closeMenu();
+        });
+    });
+    </script>
 </body>
 </html>
+
+
+
 
 
 
